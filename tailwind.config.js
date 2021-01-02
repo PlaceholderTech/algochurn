@@ -4,8 +4,11 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      inter: ["Inter"],
-      robotomono: ["Roboto Mono"],
+      inter: ['Inter'],
+      robotomono: ['Roboto Mono'],
+    },
+    letterSpacing: {
+      tightest: '-.075em',
     },
   },
   variants: {
