@@ -49,8 +49,9 @@ export default function Question() {
         <h4 className="mt-2 italic text-center text-md">
           Your place to learn!
         </h4>
-        <div className="m-3 overflow-y-auto h-3/4">
-          <div>
+        <div className="absolute inset-x-0 z-10 hidden pointer-events-none h-14 lg:block bg-gradient-to-b from-gray-50"></div>
+        <div className="m-3 overflow-y-auto h-3/4 sidebar-list">
+          <div className="mt-8">
             <h3 className="text-lg font-bold text-gray-700">
               Search Algorithms
             </h3>
