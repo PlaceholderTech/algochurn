@@ -1,7 +1,9 @@
-import { React, useState } from 'react';
-import Editor from '@components/Editor';
+import { React, useState } from "react";
+import Editor from "@components/Editor";
+import axios from "axios";
 
-export default function Question() {
+export default function Question({ data }) {
+  // console.log(data);
   const code = `let iterativeFunction = function (arr, x) {
 
     let start=0, end=arr.length-1;
@@ -33,12 +35,25 @@ export default function Question() {
     else setDropdown(true);
   };
 
-  const [dropdownSelect, setDropdownSelect] = useState('C++');
+  const [dropdownSelect, setDropdownSelect] = useState("C++");
   const [compiled, setCompiled] = useState(true);
 
   const handleDropdownValue = (value) => {
     setDropdownSelect(value);
     handleDropdownClick();
+  };
+
+  const onCompileClick = () => {
+    console.log("Compile clicked");
+    // axios
+    //   .post("https://api.hackerearth.com/v3/code/compile/", {
+    //     client_secret: process.env.CLIENT_SECRET,
+    //     source: code,
+    //     lang: "CPP14",
+    //     time_limit: 5,
+    //     memory_limit: 262144,
+    //   })
+    //   .then((data) => console.log(data));
   };
   return (
     <div className="relative grid grid-cols-4 mx-auto font-inter">
@@ -130,11 +145,11 @@ export default function Question() {
         </div>
         <div className="editor">
           {/* DROPDOWN BUTTON */}
-          <div class="relative inline-block text-left my-4">
+          <div className="relative inline-block text-left my-4">
             <div>
               <button
                 type="button"
-                class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+                className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
                 id="options-menu"
                 aria-haspopup="true"
                 aria-expanded="true"
@@ -144,16 +159,16 @@ export default function Question() {
       <!-- Heroicon name: chevron-down --> */}
                 {dropdownSelect}
                 <svg
-                  class="-mr-1 ml-2 h-5 w-5"
+                  className="-mr-1 ml-2 h-5 w-5"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                   aria-hidden="true"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   />
                 </svg>
               </button>
@@ -170,37 +185,37 @@ export default function Question() {
       To: "transform opacity-0 scale-95"
   --> */}
             <div
-              class={`z-10 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 ${
-                dropdown ? 'hidden' : ''
+              className={`z-10 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 ${
+                dropdown ? "hidden" : ""
               }`}
             >
               <div
-                class="py-1"
+                className="py-1"
                 role="menu"
                 aria-orientation="vertical"
                 aria-labelledby="options-menu"
               >
                 <div
-                  class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  className="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                   role="menuitem"
-                  onClick={() => handleDropdownValue('c++')}
+                  onClick={() => handleDropdownValue("c++")}
                   // onClick={handleDropdownValue("c++")}
                 >
                   C++
                 </div>
                 <div
-                  class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  className="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                   role="menuitem"
-                  onClick={() => handleDropdownValue('Javascript')}
+                  onClick={() => handleDropdownValue("Javascript")}
 
                   // onClick={handleDropdownValue("Javascript")}
                 >
                   Javascript
                 </div>
                 <div
-                  class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  className="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                   role="menuitem"
-                  onClick={() => handleDropdownValue('Python')}
+                  onClick={() => handleDropdownValue("Python")}
 
                   // onClick={handleDropdownValue("python")}
                 >
@@ -219,7 +234,10 @@ export default function Question() {
           </div>
 
           <div className="my-4 execution-buttons">
-            <button className="px-6 py-2 mx-2 text-white uppercase bg-green-500 rounded">
+            <button
+              className="px-6 py-2 mx-2 text-white uppercase bg-green-500 rounded"
+              onClick={onCompileClick}
+            >
               Compile 🔩
             </button>
             <button className="px-6 py-2 text-white uppercase bg-blue-600 rounded">
@@ -241,10 +259,10 @@ export default function Question() {
               <p>
                 <span className="text-red-500">
                   Compilation Error &rarr; <br />
-                  <p className="text-red-500">
+                  <span className="text-red-500 block">
                     In function ‘int main()’: <br />
                     6:2: error: ‘retrn’ was not declared in this scope
-                  </p>
+                  </span>
                 </span>
               </p>
             )}
@@ -254,32 +272,32 @@ export default function Question() {
         <div className="mb-8 overflow-hidden text-white rounded run-box">
           <div className="grid grid-cols-4 p-2 text-white bg-black metrics">
             <p className="font-semibold">
-              Run Status:{' '}
+              Run Status:{" "}
               <span className="text-green-500 font-robotomono">AC</span>
             </p>
             <p className="font-semibold">
-              Compile Status:{' '}
+              Compile Status:{" "}
               <span className="text-green-500 font-robotomono">OK</span>
             </p>
             <p className="font-semibold">
-              Time (sec):{' '}
+              Time (sec):{" "}
               <span className="text-green-500 font-robotomono">0.001212</span>
             </p>
             <p className="font-semibold">
-              Memory (KB):{' '}
+              Memory (KB):{" "}
               <span className="text-green-500 font-robotomono">64</span>
             </p>
           </div>
           <div className="input-stdin">
             <p className="p-2 bg-gray-500">Input (STDIN)</p>
             <p>
-              <p className="p-1 pl-8 font-semibold bg-black">256</p>
+              <span className="p-1 pl-8 font-semibold bg-black block">256</span>
             </p>
           </div>
-          <div ClassName="output-stdout">
+          <div className="output-stdout">
             <p className="p-2 bg-gray-500 ">Output (STDOUT)</p>
             <p>
-              <p className="p-1 pl-8 font-semibold bg-black">256</p>
+              <span className="p-1 pl-8 font-semibold bg-black block">256</span>
             </p>
           </div>
         </div>
