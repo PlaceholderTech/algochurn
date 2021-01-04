@@ -1,29 +1,29 @@
-import { React, useState } from "react";
-import Editor from "@components/Editor";
+import { React, useState } from 'react';
+import Editor from '@components/Editor';
 
 export default function Question() {
-  const code = `let iterativeFunction = function (arr, x) { 
-   
-    let start=0, end=arr.length-1; 
-          
-    // Iterate while start not meets end 
-    while (start<=end){ 
-  
-        // Find the mid index 
-        let mid=Math.floor((start + end)/2); 
-    
-        // If element is present at mid, return True 
-        if (arr[mid]===x) return true; 
-  
-        // Else look in left or right half accordingly 
-        else if (arr[mid] < x)  
-              start = mid + 1; 
+  const code = `let iterativeFunction = function (arr, x) {
+
+    let start=0, end=arr.length-1;
+
+    // Iterate while start not meets end
+    while (start<=end){
+
+        // Find the mid index
+        let mid=Math.floor((start + end)/2);
+
+        // If element is present at mid, return True
+        if (arr[mid]===x) return true;
+
+        // Else look in left or right half accordingly
+        else if (arr[mid] < x)
+              start = mid + 1;
         else
-              end = mid - 1; 
-    } 
-    
-    return false; 
-}     
+              end = mid - 1;
+    }
+
+    return false;
+}
 `;
 
   const [dropdown, setDropdown] = useState(true);
@@ -33,7 +33,7 @@ export default function Question() {
     else setDropdown(true);
   };
 
-  const [dropdownSelect, setDropdownSelect] = useState("C++");
+  const [dropdownSelect, setDropdownSelect] = useState('C++');
   const [compiled, setCompiled] = useState(true);
 
   const handleDropdownValue = (value) => {
@@ -41,18 +41,68 @@ export default function Question() {
     handleDropdownClick();
   };
   return (
-    <div className="font-inter mx-auto grid grid-cols-4">
-      <div className="sidebar h-auto bg-gray-100"></div>
-      <div className="main col-span-3 mx-8">
-        <div className="mt-4 mb-4 flex justify-between items-center">
+    <div className="relative grid grid-cols-4 mx-auto font-inter">
+      <div className="fixed w-1/4 h-screen bg-gray-50 sidebar">
+        <h2 className="mt-4 text-5xl font-light text-center text-purple-600 tracking-tightest">
+          AlgoChurn
+        </h2>
+        <h4 className="mt-2 italic text-center text-md">
+          Your place to learn!
+        </h4>
+        <div className="absolute inset-x-0 z-10 hidden pointer-events-none h-14 lg:block bg-gradient-to-b from-gray-50"></div>
+        <div className="m-3 overflow-y-auto h-3/4 sidebar-list">
+          <div className="mt-8">
+            <h3 className="text-lg font-bold text-gray-700">
+              Search Algorithms
+            </h3>
+            <ul>
+              <li className="list-item">Linear Search</li>
+              <li className="list-item list-item-active">Binary Search</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold text-gray-700">
+              Sorting Algorithms
+            </h3>
+            <ul>
+              <li className="list-item">Quick Sort</li>
+              <li className="list-item">Merge Sort</li>
+              <li className="list-item">Insertion Sort</li>
+              <li className="list-item">Bucket Sort</li>
+              <li className="list-item">Bubble Sort</li>
+              <li className="list-item">Selection Sort</li>
+              <li className="list-item">Heap Sort Sort</li>
+              <li className="list-item">Count Sort</li>
+              <li className="list-item">Radix Sort</li>
+              <li className="list-item">Cocktail Sort</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold text-gray-700">
+              Backtracking Algorithms
+            </h3>
+            <ul>
+              <li className="list-item">Knapsack Problem</li>
+              <li className="list-item">Eight Queens Puzzle</li>
+              <li className="list-item">Sudoko Solving</li>
+            </ul>
+          </div>
+        </div>
+        <div className="pt-2 text-center">
+          Presented by: &nbsp;
+          <span className="tracking-tightest">PlaceholderTech</span>
+        </div>
+      </div>
+      <div className="absolute top-0 right-0 w-4/6 col-span-3 mx-8 main">
+        <div className="flex items-center justify-between mt-4 mb-4">
           <div className="flex items-center justify-center">
-            <h1 className="font-bold text-3xl inline">Binary Search</h1>
+            <h1 className="inline text-3xl font-bold">Binary Search</h1>
             <span className="easy-btn">Easy</span>
           </div>
           <div className="justify-center">
-            <span className="bg-yellow-400 btn text-white">Recursion</span>
-            <span className="bg-gray-800	btn text-white">Searching</span>
-            <span className="bg-red-500 btn text-white">C++</span>
+            <span className="text-white bg-yellow-400 btn">Recursion</span>
+            <span className="text-white bg-gray-800 btn">Searching</span>
+            <span className="text-white bg-red-500 btn">C++</span>
           </div>
         </div>
         <div className="problem-statement">
@@ -62,13 +112,13 @@ export default function Question() {
             algorithm to find if the target number is contained in the array and
             should return its index if it is, otherwise -1.
           </p>
-          <p className="font-bold my-2">
+          <p className="my-2 font-bold">
             Sample Input: [0, 1, 21, 33, 45, 45, 61, 71, 72, 73], 33
           </p>
-          <p className="font-bold my-2">Sample Output: 3</p>
+          <p className="my-2 font-bold">Sample Output: 3</p>
         </div>
-        <div className="approach my-8">
-          <h1 className="font-bold text-3xl inline">Approach</h1>
+        <div className="my-8 approach">
+          <h1 className="inline text-3xl font-bold">Approach</h1>
           <p className="my-4">
             We basically ignore half of the elements just after one comparison.
             Compare x with the middle element. If x matches with middle element,
@@ -121,7 +171,7 @@ export default function Question() {
   --> */}
             <div
               class={`z-10 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 ${
-                dropdown ? "hidden" : ""
+                dropdown ? 'hidden' : ''
               }`}
             >
               <div
@@ -133,7 +183,7 @@ export default function Question() {
                 <div
                   class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                   role="menuitem"
-                  onClick={() => handleDropdownValue("c++")}
+                  onClick={() => handleDropdownValue('c++')}
                   // onClick={handleDropdownValue("c++")}
                 >
                   C++
@@ -141,7 +191,7 @@ export default function Question() {
                 <div
                   class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                   role="menuitem"
-                  onClick={() => handleDropdownValue("Javascript")}
+                  onClick={() => handleDropdownValue('Javascript')}
 
                   // onClick={handleDropdownValue("Javascript")}
                 >
@@ -150,7 +200,7 @@ export default function Question() {
                 <div
                   class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                   role="menuitem"
-                  onClick={() => handleDropdownValue("Python")}
+                  onClick={() => handleDropdownValue('Python')}
 
                   // onClick={handleDropdownValue("python")}
                 >
@@ -159,7 +209,7 @@ export default function Question() {
               </div>
             </div>
           </div>
-          <div className="editor-wrapper rounded-lg overflow-hidden">
+          <div className="overflow-hidden rounded-lg editor-wrapper">
             <Editor
               height="70vh"
               width="90vw"
@@ -168,18 +218,18 @@ export default function Question() {
             />
           </div>
 
-          <div className="execution-buttons my-4">
-            <button className="bg-green-500 py-2 px-6 rounded text-white mx-2 uppercase">
+          <div className="my-4 execution-buttons">
+            <button className="px-6 py-2 mx-2 text-white uppercase bg-green-500 rounded">
               Compile 🔩
             </button>
-            <button className="bg-blue-600 py-2 px-6 rounded text-white uppercase">
+            <button className="px-6 py-2 text-white uppercase bg-blue-600 rounded">
               Run ⚡️
             </button>
           </div>
         </div>
 
         <div className="compile-box">
-          <div className="bg-gray-900 rounded my-4 p-4">
+          <div className="p-4 my-4 bg-gray-900 rounded">
             <p className="text-white">[INFO] &rarr; Compiling...</p>
             <p className="text-white">[INFO] &rarr; Running...</p>
             {compiled && (
@@ -201,35 +251,35 @@ export default function Question() {
           </div>
         </div>
 
-        <div className="run-box rounded overflow-hidden text-white mb-8">
-          <div className="metrics grid grid-cols-4 bg-black text-white p-2">
+        <div className="mb-8 overflow-hidden text-white rounded run-box">
+          <div className="grid grid-cols-4 p-2 text-white bg-black metrics">
             <p className="font-semibold">
-              Run Status:{" "}
+              Run Status:{' '}
               <span className="text-green-500 font-robotomono">AC</span>
             </p>
             <p className="font-semibold">
-              Compile Status:{" "}
+              Compile Status:{' '}
               <span className="text-green-500 font-robotomono">OK</span>
             </p>
             <p className="font-semibold">
-              Time (sec):{" "}
+              Time (sec):{' '}
               <span className="text-green-500 font-robotomono">0.001212</span>
             </p>
             <p className="font-semibold">
-              Memory (KB):{" "}
+              Memory (KB):{' '}
               <span className="text-green-500 font-robotomono">64</span>
             </p>
           </div>
           <div className="input-stdin">
-            <p className="bg-gray-500 p-2">Input (STDIN)</p>
+            <p className="p-2 bg-gray-500">Input (STDIN)</p>
             <p>
-              <p className="bg-black font-semibold pl-8 p-1">256</p>
+              <p className="p-1 pl-8 font-semibold bg-black">256</p>
             </p>
           </div>
           <div ClassName="output-stdout">
-            <p className=" bg-gray-500 p-2">Output (STDOUT)</p>
+            <p className="p-2 bg-gray-500 ">Output (STDOUT)</p>
             <p>
-              <p className="bg-black font-semibold pl-8 p-1">256</p>
+              <p className="p-1 pl-8 font-semibold bg-black">256</p>
             </p>
           </div>
         </div>
